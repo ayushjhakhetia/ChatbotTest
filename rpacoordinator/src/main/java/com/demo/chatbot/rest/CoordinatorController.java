@@ -23,6 +23,7 @@ import com.demo.chatbot.model.BotResponse;
 import com.demo.chatbot.model.FollowUpEventInput;
 import com.demo.chatbot.model.FulfillmentMessages;
 import com.demo.chatbot.model.Message;
+import com.demo.chatbot.model.Parameters;
 import com.demo.chatbot.model.Text;
 import com.demo.chatbot.model.TextResponse;
 
@@ -35,6 +36,18 @@ public class CoordinatorController {
     public ResponseEntity<?> echoAgentStatus(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("Executing echoAgentStatus");
         return new ResponseEntity<>("Online", HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/fullfillment1", method = RequestMethod.POST)
+    public @ResponseBody WebhookResponse webhookForFollowUpEvent(@RequestBody String dr) {
+        System.out.println("end point /fullfillment1 hit...");
+        Parameters parameters = new Parameters();
+        parameters.setBalancer("2342342");
+        FollowUpEventInput followUpEventInput = new FollowUpEventInput("ViewBalance", "en-US");
+        followUpEventInput.setParameters(parameters);
+        WebhookResponse wr = new WebhookResponse();
+        wr.setFollowUpEventInput(followUpEventInput);
+        return wr;
     }
 
     @RequestMapping(value = "/fullfillment", method = RequestMethod.POST)
@@ -177,15 +190,6 @@ public class CoordinatorController {
        // wr.setFulfillmentMessages(lt);
         wr.setSource(botRequest.getSession());
         System.out.println("Source: " + wr.getSource());
-        return wr;
-    }
-
-    @RequestMapping(value = "/fullfillment1", method = RequestMethod.POST)
-    public @ResponseBody WebhookResponse webhookForFollowUpEvent(@RequestBody String dr) {
-        System.out.println("end point /fullfillment1 hit...");
-        FollowUpEventInput followUpEventInput = new FollowUpEventInput("ViewBalance", "en-US");
-        WebhookResponse wr = new WebhookResponse();
-        wr.setFollowUpEventInput(followUpEventInput);
         return wr;
     }
 
