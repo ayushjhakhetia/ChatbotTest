@@ -183,7 +183,7 @@ public class CoordinatorController {
     @RequestMapping(value = "/fullfillment1", method = RequestMethod.POST)
     public @ResponseBody WebhookResponse webhookForFollowUpEvent(@RequestBody String dr) {
         System.out.println("end point /fullfillment1 hit...");
-        FollowUpEventInput followUpEventInput = new FollowUpEventInput("example", "en-US");
+        FollowUpEventInput followUpEventInput = new FollowUpEventInput("ViewBalance", "en-US");
         WebhookResponse wr = new WebhookResponse();
         wr.setFollowUpEventInput(followUpEventInput);
         return wr;
