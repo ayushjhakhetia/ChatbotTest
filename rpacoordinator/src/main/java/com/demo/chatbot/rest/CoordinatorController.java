@@ -43,7 +43,7 @@ public class CoordinatorController {
         System.out.println("end point /fullfillment1 hit...");
         Parameters parameters = new Parameters();
         parameters.setBalancer("2342342");
-        FollowUpEventInput followUpEventInput = new FollowUpEventInput("ViewBalance", "en-US");
+        FollowUpEventInput followUpEventInput = new FollowUpEventInput("example", "en-US");
         followUpEventInput.setParameters(parameters);
         WebhookResponse wr = new WebhookResponse();
         wr.setFollowUpEventInput(followUpEventInput);
