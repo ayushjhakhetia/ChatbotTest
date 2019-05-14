@@ -46,7 +46,7 @@ public class CoordinatorController {
         FollowUpEventInput followUpEventInput = new FollowUpEventInput("example", "en-US");
         followUpEventInput.setParameters(parameters);
         WebhookResponse wr = new WebhookResponse();
-        wr.setFollowUpEventInput(followUpEventInput);
+        wr.setFollowupEventInput(followUpEventInput);
         return wr;
     }
 
