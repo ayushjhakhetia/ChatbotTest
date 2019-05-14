@@ -16,7 +16,7 @@ public class WebhookResponse {
     private String source = "impetus-hook(Default source)";
     private List<OutputContexts> outputContexts;
     private List<FulfillmentMessages> fulfillmentMessages;
-    private FollowUpEventInput followUpEventInput;
+    private FollowUpEventInput followupEventInput;
 
     public List<FulfillmentMessages> getFulfillmentMessages() {
 		return fulfillmentMessages;
@@ -26,12 +26,12 @@ public class WebhookResponse {
 		this.fulfillmentMessages = fulfillmentMessages;
 	}
 
-	public FollowUpEventInput getFollowUpEventInput() {
-		return followUpEventInput;
+	public FollowUpEventInput getFollowupEventInput() {
+		return followupEventInput;
 	}
 
-	public void setFollowUpEventInput(FollowUpEventInput followUpEventInput) {
-		this.followUpEventInput = followUpEventInput;
+	public void setFollowupEventInput(FollowUpEventInput followupEventInput) {
+		this.followupEventInput = followupEventInput;
 	}
 
 	public final String getFulfillmentText() {
