@@ -150,7 +150,7 @@ public class QueryResult {
 	public void setDiagnosticInfo(DiagnosticInfo diagnosticInfo) {
 		this.diagnosticInfo = diagnosticInfo;
 	}	
-
+	
 	@JsonAnyGetter
 	public Map<String, Object> getAdditionalProperties() {
 		return this.additionalProperties;

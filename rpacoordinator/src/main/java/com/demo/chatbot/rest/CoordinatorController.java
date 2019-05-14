@@ -39,15 +39,40 @@ public class CoordinatorController {
     }
 
     @RequestMapping(value = "/fullfillment1", method = RequestMethod.POST)
-    public @ResponseBody WebhookResponse webhookForFollowUpEvent(@RequestBody String dr) {
+    public @ResponseBody WebhookResponse webhookForFollowUpEvent(@RequestBody String dr) throws com.fasterxml.jackson.core.JsonParseException, JsonMappingException, IOException {
         System.out.println("end point /fullfillment1 hit...");
+        FollowUpEventInput followUpEventInput = null;
+        BotResponse botResponse = new BotResponse();
+        BotRequest botRequest = null;
+        ObjectMapper mapper = new ObjectMapper();
+        botRequest = mapper.readValue(dr, BotRequest.class);
+        
+        String balance = botRequest.getQueryResult().getParameters().getBalance();
+        int balanceAmount = Integer.parseInt(balance);
         Parameters parameters = new Parameters();
-        parameters.setBalancer("2342342");
-        FollowUpEventInput followUpEventInput = new FollowUpEventInput("example", "en-US");
+        if(balanceAmount>0) {
+            balanceAmount--;
+            parameters.setBalance(Integer.toString(balanceAmount));
+            followUpEventInput = new FollowUpEventInput("example", "en-US");
+        } else {
+            parameters.setBalance(Integer.toString(balanceAmount));
+            followUpEventInput = new FollowUpEventInput("Repeat", "en-US");
+        }
         followUpEventInput.setParameters(parameters);
         WebhookResponse wr = new WebhookResponse();
         wr.setFollowupEventInput(followUpEventInput);
         return wr;
+        
+        
+        //Send Response for any kind of request 
+        //FollowUpEventInput 
+//        Parameters parameters = new Parameters();
+//        parameters.setBalance("2342342");
+//        FollowUpEventInput followUpEventInput = new FollowUpEventInput("example", "en-US");
+//        followUpEventInput.setParameters(parameters);
+//        WebhookResponse wr = new WebhookResponse();
+//        wr.setFollowupEventInput(followUpEventInput);
+//        return wr;  
     }
 
     @RequestMapping(value = "/fullfillment", method = RequestMethod.POST)

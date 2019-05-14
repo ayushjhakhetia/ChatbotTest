@@ -22,7 +22,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "Password",
     "uid",
     "pswd",
-    "balance"
+    "balance",
+    "name"
 })
 public class Parameters {
 
@@ -49,6 +50,8 @@ public class Parameters {
     private String pswd;
     @JsonProperty("balance")
     private String balance;
+    @JsonProperty("name")
+    private String name;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -150,8 +153,18 @@ public class Parameters {
     }
 
     @JsonProperty("balance")
-    public void setBalancer(String param) {
+    public void setBalance(String param) {
         this.balance = param;
+    }
+    
+    @JsonProperty("name")
+    public String getName() {
+        return name;
+    }
+
+    @JsonProperty("name")
+    public void setName(String name) {
+        this.name = name;
     }
 
     @JsonAnyGetter
