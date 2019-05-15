@@ -66,17 +66,18 @@ public class CoordinatorController {
         String balance = botRequest.getQueryResult().getParameters().getBalance();
         if(balance!=null) {
             int balanceAmount = Integer.parseInt(balance);
-            
             if(balanceAmount>0) {
+                System.out.println("******* balance amount is greater than 0. Balance is : "+balanceAmount);
                 balanceAmount--;
                 parameters.setBalance(Integer.toString(balanceAmount));
             } else {
+                System.out.println("******* balance amount is less than 0. Balance is : "+balanceAmount);
                 parameters.setBalance(Integer.toString(balanceAmount));
                 followUpEventInput = new FollowUpEventInput("Repeat", "en-US");
             }
         }
         
-//        OutputContexts contexts = new OutputContexts();
+//        Output    ontexts = new OutputContexts();
 //        contexts.setParameters(parameters);
 //        
 //        List<OutputContexts> contextsList = new ArrayList<OutputContexts>();
