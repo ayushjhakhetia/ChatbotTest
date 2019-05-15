@@ -10,7 +10,7 @@ import com.demo.chatbot.model.Text;
 
 
 public class WebhookResponse {
-    private String fulfillmentText;//= " Default fulfillment text"
+    private String fulfillmentText = " Default fulfillment text";
     //private List<TextResponse> fulfillmentMessages;
 
     private String source = "impetus-hook(Default source)";
