@@ -76,13 +76,13 @@ public class CoordinatorController {
             }
         }
         
-        OutputContexts contexts = new OutputContexts();
-        contexts.setParameters(parameters);
-        
-        List<OutputContexts> contextsList = new ArrayList<OutputContexts>();
-        contextsList.add(contexts);
+//        OutputContexts contexts = new OutputContexts();
+//        contexts.setParameters(parameters);
+//        
+//        List<OutputContexts> contextsList = new ArrayList<OutputContexts>();
+//        contextsList.add(contexts);
         followUpEventInput.setParameters(parameters);
-        wr.setOutputContexts(contextsList);
+//        wr.setOutputContexts(contextsList);
         wr.setFollowupEventInput(followUpEventInput);
         return wr;
         
