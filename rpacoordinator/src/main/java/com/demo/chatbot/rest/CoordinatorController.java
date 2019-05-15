@@ -66,9 +66,14 @@ public class CoordinatorController {
         String balance = botRequest.getQueryResult().getParameters().getBalance();
         if(balance!=null) {
             int balanceAmount = Integer.parseInt(balance);
-            if(balanceAmount>0) {
-                System.out.println("******* balance amount is greater than 0. Balance is : "+balanceAmount);
+            if(balanceAmount>3) {
+                System.out.println("******* balance amount is greater than 3. Balance is : "+balanceAmount);
                 balanceAmount--;
+                parameters.setBalance(Integer.toString(balanceAmount));
+            } else if(balanceAmount==3) {
+                System.out.println("******* balance amount is equal to 3 . Balance is : "+balanceAmount);
+                balanceAmount--;
+                followUpEventInput = new FollowUpEventInput("example2", "en-US");
                 parameters.setBalance(Integer.toString(balanceAmount));
             } else {
                 System.out.println("******* balance amount is less than 0. Balance is : "+balanceAmount);
