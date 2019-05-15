@@ -62,19 +62,19 @@ public class CoordinatorController {
         
         Parameters parameters = new Parameters();
         
-       
+        followUpEventInput = new FollowUpEventInput("example", "en-US");
         String balance = botRequest.getQueryResult().getParameters().getBalance();
-        int balanceAmount = Integer.parseInt(balance);
-        
-        if(balanceAmount>0) {
-            balanceAmount--;
-            parameters.setBalance(Integer.toString(balanceAmount));
-            followUpEventInput = new FollowUpEventInput("example", "en-US");
-        } else {
-            parameters.setBalance(Integer.toString(balanceAmount));
-            followUpEventInput = new FollowUpEventInput("Repeat", "en-US");
+        if(balance!=null) {
+            int balanceAmount = Integer.parseInt(balance);
+            
+            if(balanceAmount>0) {
+                balanceAmount--;
+                parameters.setBalance(Integer.toString(balanceAmount));
+            } else {
+                parameters.setBalance(Integer.toString(balanceAmount));
+                followUpEventInput = new FollowUpEventInput("Repeat", "en-US");
+            }
         }
-        
         
         OutputContexts contexts = new OutputContexts();
         contexts.setParameters(parameters);
