@@ -23,6 +23,7 @@ import com.demo.chatbot.model.BotResponse;
 import com.demo.chatbot.model.FollowUpEventInput;
 import com.demo.chatbot.model.FulfillmentMessages;
 import com.demo.chatbot.model.Message;
+import com.demo.chatbot.model.OutputContexts;
 import com.demo.chatbot.model.Parameters;
 import com.demo.chatbot.model.Text;
 import com.demo.chatbot.model.TextResponse;
@@ -42,14 +43,29 @@ public class CoordinatorController {
     public @ResponseBody WebhookResponse webhookForFollowUpEvent(@RequestBody String dr) throws com.fasterxml.jackson.core.JsonParseException, JsonMappingException, IOException {
         System.out.println("end point /fullfillment1 hit...");
         FollowUpEventInput followUpEventInput = null;
+        WebhookResponse wr = new WebhookResponse();
+        
         BotResponse botResponse = new BotResponse();
         BotRequest botRequest = null;
         ObjectMapper mapper = new ObjectMapper();
         botRequest = mapper.readValue(dr, BotRequest.class);
         
+        
+        /*String intent = botRequest.getQueryResult().getIntent().getName();
+        if(intent.equals("Default Welcome Intent")) {
+            wr.setFulfillmentText("Hey! What's your name? ");
+        } else if(intent.equals("Get Name")) {
+            String queryText = botRequest.getQueryResult().getQueryText();
+            if(queryText.equals("Jon Snow"))
+        }*/
+       
+        
+        Parameters parameters = new Parameters();
+        
+       
         String balance = botRequest.getQueryResult().getParameters().getBalance();
         int balanceAmount = Integer.parseInt(balance);
-        Parameters parameters = new Parameters();
+        
         if(balanceAmount>0) {
             balanceAmount--;
             parameters.setBalance(Integer.toString(balanceAmount));
@@ -58,8 +74,15 @@ public class CoordinatorController {
             parameters.setBalance(Integer.toString(balanceAmount));
             followUpEventInput = new FollowUpEventInput("Repeat", "en-US");
         }
+        
+        
+        OutputContexts contexts = new OutputContexts();
+        contexts.setParameters(parameters);
+        
+        List<OutputContexts> contextsList = new ArrayList<OutputContexts>();
+        contextsList.add(contexts);
         followUpEventInput.setParameters(parameters);
-        WebhookResponse wr = new WebhookResponse();
+        wr.setOutputContexts(contextsList);
         wr.setFollowupEventInput(followUpEventInput);
         return wr;
         
