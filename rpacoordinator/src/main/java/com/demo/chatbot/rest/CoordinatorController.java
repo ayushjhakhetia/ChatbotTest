@@ -2,6 +2,7 @@ package com.demo.chatbot.rest;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,7 +60,11 @@ public class CoordinatorController {
             if(queryText.equals("Jon Snow"))
         }*/
        
-        
+        Long time = new java.util.Date().getTime();
+        System.out.println(time);
+        while(time+400>new java.util.Date().getTime()){
+            System.out.println("exiting...");
+        }
         Parameters parameters = new Parameters();
         
         followUpEventInput = new FollowUpEventInput("example", "en-US");
