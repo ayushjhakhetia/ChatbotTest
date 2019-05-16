@@ -41,7 +41,7 @@ public class CoordinatorController {
     }
 
     @RequestMapping(value = "/fullfillment1", method = RequestMethod.POST)
-    public @ResponseBody WebhookResponse webhookForFollowUpEvent(@RequestBody String dr) throws com.fasterxml.jackson.core.JsonParseException, JsonMappingException, IOException {
+    public @ResponseBody WebhookResponse webhookForFollowUpEvent(@RequestBody String dr) throws com.fasterxml.jackson.core.JsonParseException, JsonMappingException, IOException, InterruptedException {
         System.out.println("end point /fullfillment1 hit...");
         FollowUpEventInput followUpEventInput = null;
         WebhookResponse wr = new WebhookResponse();
@@ -60,10 +60,12 @@ public class CoordinatorController {
             if(queryText.equals("Jon Snow"))
         }*/
        
-        Long time = new java.util.Date().getTime();
-        System.out.println(time);
-        while(time+300>new java.util.Date().getTime()){
-        }
+//        Long time = new java.util.Date().getTime();
+//        System.out.println(time);
+//        while(time+300>new java.util.Date().getTime()){
+//        }
+        
+        Thread.sleep(3000);
         Parameters parameters = new Parameters();
         
         followUpEventInput = new FollowUpEventInput("example", "en-US");
@@ -72,19 +74,21 @@ public class CoordinatorController {
             int balanceAmount = Integer.parseInt(balance);
             if(balanceAmount>4) {
                 wr.setFulfillmentText("balance amount is greater than 4");
-                System.out.println("******* balance amount is greater than 4. Balance is : "+balanceAmount);
+                System.out.println("******* balance amount is greater than 4. Balance is : "+balanceAmount+" *******");
                 balanceAmount--;
                 parameters.setBalance(Integer.toString(balanceAmount));
             } else if(balanceAmount==4) {
                 wr.setFulfillmentText("balance amount is equal to 4");
-                System.out.println("******* balance amount is equal to 4 . Balance is : "+balanceAmount);
+                System.out.println("******* balance amount is equal to 4 . Balance is : "+balanceAmount+" *******");
                 balanceAmount--;
                 followUpEventInput = new FollowUpEventInput("example2", "en-US");
                 parameters.setBalance(Integer.toString(balanceAmount));
             } else {
-                System.out.println("******* balance amount is less than 4. Balance is : "+balanceAmount);
+                System.out.println("******* balance amount is less than 4. Balance is : "+balanceAmount+" *******");
+                balanceAmount--;
+                wr.setFulfillmentText("*******  balance amount is less than 4. Balance is : "+balanceAmount+" *******");
                 parameters.setBalance(Integer.toString(balanceAmount));
-                followUpEventInput = new FollowUpEventInput("Repeat", "en-US");
+                followUpEventInput = new FollowUpEventInput("example", "en-US");
             }
         }
         
