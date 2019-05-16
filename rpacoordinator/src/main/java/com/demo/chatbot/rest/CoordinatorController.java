@@ -63,7 +63,7 @@ public class CoordinatorController {
         Long time = new java.util.Date().getTime();
         System.out.println(time);
         while(time+400>new java.util.Date().getTime()){
-            System.out.println("exiting...");
+   //         System.out.println("exiting...");
         }
         Parameters parameters = new Parameters();
         
