@@ -65,7 +65,7 @@ public class CoordinatorController {
 //        while(time+300>new java.util.Date().getTime()){
 //        }
         
-        Thread.sleep(3000);
+        Thread.sleep(4000);
         Parameters parameters = new Parameters();
         
         followUpEventInput = new FollowUpEventInput("example", "en-US");
