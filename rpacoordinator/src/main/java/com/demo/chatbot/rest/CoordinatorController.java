@@ -62,8 +62,7 @@ public class CoordinatorController {
        
         Long time = new java.util.Date().getTime();
         System.out.println(time);
-        while(time+400>new java.util.Date().getTime()){
-   //         System.out.println("exiting...");
+        while(time+300>new java.util.Date().getTime()){
         }
         Parameters parameters = new Parameters();
         
@@ -71,17 +70,19 @@ public class CoordinatorController {
         String balance = botRequest.getQueryResult().getParameters().getBalance();
         if(balance!=null) {
             int balanceAmount = Integer.parseInt(balance);
-            if(balanceAmount>3) {
-                System.out.println("******* balance amount is greater than 3. Balance is : "+balanceAmount);
+            if(balanceAmount>4) {
+                wr.setFulfillmentText("balance amount is greater than 4");
+                System.out.println("******* balance amount is greater than 4. Balance is : "+balanceAmount);
                 balanceAmount--;
                 parameters.setBalance(Integer.toString(balanceAmount));
-            } else if(balanceAmount==3) {
-                System.out.println("******* balance amount is equal to 3 . Balance is : "+balanceAmount);
+            } else if(balanceAmount==4) {
+                wr.setFulfillmentText("balance amount is equal to 4");
+                System.out.println("******* balance amount is equal to 4 . Balance is : "+balanceAmount);
                 balanceAmount--;
                 followUpEventInput = new FollowUpEventInput("example2", "en-US");
                 parameters.setBalance(Integer.toString(balanceAmount));
             } else {
-                System.out.println("******* balance amount is less than 0. Balance is : "+balanceAmount);
+                System.out.println("******* balance amount is less than 4. Balance is : "+balanceAmount);
                 parameters.setBalance(Integer.toString(balanceAmount));
                 followUpEventInput = new FollowUpEventInput("Repeat", "en-US");
             }
