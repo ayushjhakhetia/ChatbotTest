@@ -88,7 +88,7 @@ public class CoordinatorController {
                 balanceAmount--;
                 wr.setFulfillmentText("*******  balance amount is less than 4. Balance is : "+balanceAmount+" *******");
                 parameters.setBalance(Integer.toString(balanceAmount));
-                followUpEventInput = new FollowUpEventInput("example", "en-US");
+                followUpEventInput = new FollowUpEventInput("example3", "en-US");
             }
         }
         
