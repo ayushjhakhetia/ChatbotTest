@@ -7,8 +7,8 @@
 	<groupId>com.demo.chatbot</groupId>
 	<artifactId>googledialogflow</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>rpacoordinator</name>
-	<description>RPA Coordinator</description>
+	<name>dialogflow</name>
+	<description>Google DialogFlow Chatbotr</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -34,11 +34,11 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.google.cloud/google-cloud-dialogflow -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.google.cloud</groupId>
 			<artifactId>google-cloud-dialogflow</artifactId>
 			<version>0.89.0-alpha</version>
-		</dependency>
+		</dependency> -->
 
 	</dependencies>
 
